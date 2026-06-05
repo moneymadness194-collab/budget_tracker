@@ -27,6 +27,7 @@ while True:
     expenses.append(expense) 
 
 
+
 def calculate_total(expenses):
    
    total = 0
@@ -65,3 +66,6 @@ print("total: ", calculate_total(expenses))
 
 with open("expenses.json", "w") as file:
     json.dump(expenses,file)
+
+    print("git test")
+    
