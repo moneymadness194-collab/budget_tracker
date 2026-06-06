@@ -1,17 +1,83 @@
-# budget_tracker
-This is my first proper project i worked on while learmning backend and all fundamentals
+# Budget Tracker (PostgreSQL)
 
-Mainly the structure is:
-|
-|-----> connecting with postgresql at the top for recording expenses
-|-----> using 5 functions for each action
-   |
-   |--> add_expense()--|For adding expenses with try and expect to avoide bugs when no value is added or string in the place of amount|
-   |--> view_expenses()--|for retaining the table from postgre database and viewing in pannel|
-   |--> calculate_total()--|Its for calculating the overall total of the table and retaining the value|
-   |-->calculate_category_total()--|Its for calculating total per category and retaining that information|
-   |
-   Lastly there is the main function 
-   -->main_menu()--->|I used loop and made a option screen inside the fucnction and assigned 1-5 integers to options and each option calls a function and it|                                                   \|continues until the choice is quit i have also used error handling in most part|/
+A command-line budget tracking application built with Python and PostgreSQL.
 
+## Overview
 
+This project was built to strengthen my understanding of backend development fundamentals, including Python, PostgreSQL, database operations, input validation, and version control with Git/GitHub.
+
+The application allows users to manage expenses through a menu-driven interface while storing all data in a PostgreSQL database.
+
+## Features
+
+* Add expenses
+* View all expenses
+* Calculate total expenses
+* Calculate category-wise expense totals
+* Update existing expenses
+* Delete expenses
+* Input validation for categories, amounts, and IDs
+* Persistent storage using PostgreSQL
+
+## Technologies Used
+
+* Python
+* PostgreSQL
+* Psycopg
+* Git & GitHub
+* Environment Variables (`.env`)
+
+## Project Structure
+
+The application follows a simple backend-oriented architecture:
+
+Database Connection
+→ Cursor Operations
+→ Business Logic Functions
+→ Main Menu Controller
+
+Core functions:
+
+* `add_expenses()`
+* `view_expenses()`
+* `calculate_total()`
+* `calculate_category_total()`
+* `update_expenses()`
+* `delete_expenses()`
+* `main_menu()`
+
+The `main_menu()` function acts as the entry point and connects all application features. The program runs continuously until the user chooses to exit.
+
+## Database Operations Implemented
+
+This project implements complete CRUD operations:
+
+### Create
+
+* Add new expenses
+
+### Read
+
+* View expenses
+* Calculate totals
+* Calculate category totals
+
+### Update
+
+* Modify existing expenses by ID
+
+### Delete
+
+* Remove expenses by ID
+
+## Learning Outcomes
+
+Through this project, I gained practical experience with:
+
+* Python functions and program structure
+* Input validation and exception handling
+* SQL queries (`INSERT`, `SELECT`, `UPDATE`, `DELETE`, `GROUP BY`, `SUM`)
+* PostgreSQL integration using Psycopg
+* Git and GitHub workflows
+* Environment variable management for sensitive credentials
+* Designing and building a complete CRUD application
