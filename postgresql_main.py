@@ -18,14 +18,14 @@ def add_expenses():
     while True:
 
         
-        category = input("please entre a category")
+        category = input("please entre a category: ")
         if category.lower() == "quit":
             break
         elif category == "":
             print("category not found")
             continue
         
-        amount = input("please entre a amount")
+        amount = input("please entre a amount: ")
         
         if amount == "":
             print("amount not found")
@@ -59,7 +59,7 @@ def view_expenses():
     rows = cursor.fetchall()
 
     for row in rows:
-        print(row[1], row[2])
+        print(row[0],"-",row[1],"-", row[2])
 
 
 
@@ -67,9 +67,9 @@ def calculate_total():
 
     cursor.execute("select sum(amount) from expenses")
 
-    row = cursor.fetchall()
+    row = cursor.fetchone()
     
-    print("total : ", row[0])
+    print("total : ", float(row[0]))
 
 
 def calculate_category_total():
@@ -81,6 +81,64 @@ def calculate_category_total():
     for row in rows:
         print("category total: ", row[0], row[1])
 
+def delete_expenses():
+
+    while True:
+        id = input("insert an id: ")
+        if id == "":
+            print("invalid id")
+            continue
+        elif id =="0":
+            break
+        try:
+            id = int(id)
+        except ValueError:
+            print("please entre a valid number")
+            continue
+        
+        cursor.execute("delete from expenses where id = %s",(id,))
+
+        conn.commit()
+        print("Expenses deleated!")
+
+def update_expenses():
+    while True:
+        id = input("insert an id: ")
+        if id == "":
+            print("invalid id!")
+            continue
+        elif id == "0":
+            break
+        try:
+            id = int(id)
+        except:
+            print("please entre a valid id!")
+            continue
+
+        amount = input("please entre the updated amount: ")
+
+        if amount == "":
+            print("invalid amount!")
+            continue
+        try:
+            amount = float(amount)
+        except ValueError:
+            print("please entre a valid amount!")
+            continue
+
+        cursor.execute("update expenses set amount = amount + %s where id = %s",(amount,id))
+
+        conn.commit()
+        print ("amount updated!")
+
+        
+         
+    
+            
+
+    
+
+
 
 
 def main_menu():
@@ -88,10 +146,12 @@ def main_menu():
     
     while True:
         print("1. Add expenses")
-        print("2. view expenses")
-        print("3. calculate total")
-        print("4.calculate category total")
-        print("5. quit")
+        print("2. View expenses")
+        print("3. Calculate total")
+        print("4. Calculate category total")
+        print("5. Delete expenses")
+        print("6.Update expenses")
+        print("7. Quit")
 
         choice = input("choice: ")
 
@@ -104,6 +164,10 @@ def main_menu():
         elif choice == "4":
             calculate_category_total()
         elif choice == "5":
+            delete_expenses()
+        elif choice == "6":
+            update_expenses()
+        elif choice == "7":
             break
         else:
             print("invalid choice")
